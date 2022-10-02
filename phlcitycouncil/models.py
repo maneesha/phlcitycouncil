@@ -13,23 +13,6 @@ class Person(models.Model):
     def __str__(self):
         return self.first_name +  " " + self.last_name
 
-class Candiate(models.Model):
-    """Model representing a candidate for city council.  May or may not end up holding a seat."""
-
-    pass
-
-class Election(models.Model):
-    """Model representing each Election"""
-
-    election_date = models.DateField()
-
-    ELECTION_TYPES = (
-        ('p', 'Primary'),
-        ('g', 'General'),
-        ('s', 'Special'),
-    )
-
-    election_type = models.CharField(max_length=1, choices=ELECTION_TYPES,blank=False, null=False)
 
 class Seat(models.Model):
     """Model representing every possible seat in city council"""
@@ -50,6 +33,26 @@ class Seat(models.Model):
 
     )
     seat_name = models.CharField(max_length = 2, choices = SEATS, blank=False, null=False) 
+
+class Candiate(models.Model):
+    """Model representing a candidate for city council.  May or may not end up holding a seat."""
+
+    pass
+
+class Election(models.Model):
+    """Model representing each Election"""
+
+    election_date = models.DateField()
+
+    ELECTION_TYPES = (
+        ('p', 'Primary'),
+        ('g', 'General'),
+        ('s', 'Special'),
+    )
+
+    election_type = models.CharField(max_length=1, choices=ELECTION_TYPES,blank=False, null=False)
+
+
 
 
 class Term(models.Model):
