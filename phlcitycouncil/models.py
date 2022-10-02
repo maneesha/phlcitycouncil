@@ -90,7 +90,7 @@ class Candidate(models.Model):
     
     candidate_person = models.ForeignKey("Person", on_delete=models.CASCADE, blank=False, null=False)
     candidate_election = models.ForeignKey("Election", on_delete=models.CASCADE, blank=False, null=False)
-    candidate_seat = models.ForeignKey("Seat", on_delete=models.CASCADE, blank=False, null=False)
+    # candidate_seat = models.ForeignKey("Seat", on_delete=models.CASCADE, blank=False, null=False)
 
     RESULTS = (
         ('w', 'Win'),
@@ -101,8 +101,12 @@ class Candidate(models.Model):
 
     def __str__(self):
         full_name = self.candidate_person.first_name + " " + self.candidate_person.last_name
-        seat_verbose = self.candidate_seat.get_seat_name_display()
-        return  full_name + ", " + seat_verbose
+        # seat_verbose = self.candidate_seat.get_seat_name_display()
+        election_type_verbose = self.candidate_election.get_election_type_display()
+        election_seat_verbose = self.candidate_election.election_seat.get_seat_name_display()
+        election_date_string = self.candidate_election.election_date.strftime("%Y")
+        election_verbose = election_type_verbose + " Election (" + election_date_string + "), " + election_seat_verbose
+        return  full_name + ", " + election_verbose
 
 
 class Term(models.Model):
