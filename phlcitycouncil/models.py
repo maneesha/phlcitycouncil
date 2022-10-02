@@ -99,7 +99,7 @@ class Candidate(models.Model):
         ('l', 'Lose'),
     )
 
-    candidate_resuts = models.CharField(max_length=1, choices=RESULTS, blank=True, null=True)
+    candidate_results = models.CharField(max_length=1, choices=RESULTS, blank=True, null=True)
 
     def __str__(self):
         full_name = self.candidate_person.first_name + " " + self.candidate_person.last_name
@@ -114,7 +114,9 @@ class Candidate(models.Model):
 class Term(models.Model):
     """Model representing every term a Person holds a Seat """
 
-    councilmember = models.ForeignKey("Candidate", on_delete=models.RESTRICT)
+    councilmember = models.ForeignKey("Candidate", 
+                                      on_delete=models.RESTRICT,
+                                      limit_choices_to={'candidate_results': 'w'})
     term_start_date = models.DateField(null = False, blank = False)
     term_end_date = models.DateField(null = False, blank = False)
 

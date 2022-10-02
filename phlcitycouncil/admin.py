@@ -27,5 +27,5 @@ class ElectionAdmin(admin.ModelAdmin):
 
 @admin.register(Candidate)
 class CandidateAdmin(admin.ModelAdmin):
-    list_filter = ('candidate_person', 'candidate_election', 'candidate_resuts')
+    list_filter = ('candidate_person', 'candidate_election', 'candidate_results')
 
