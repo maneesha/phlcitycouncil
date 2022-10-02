@@ -12,11 +12,12 @@ class Person(models.Model):
     death = models.DateField(null = True, blank = True)
 
     RACE = (
-        ('w', 'White'),
-        ('b', 'Black/African American'),
         ('a', 'Asian'),
+        ('b', 'Black/African American'),        
         ('h', 'Hispanic/Latino'),
-        ('o', 'Other')
+        ('w', 'White'),
+        ('o', 'Other'),
+
     )
 
     race = models.CharField(choices = RACE, max_length = 1, null=True, blank=True)
