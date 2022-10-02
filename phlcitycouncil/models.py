@@ -7,8 +7,8 @@ class Person(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
 
-    birth = models.DateField()
-    death = models.DateField()
+    birth = models.DateField(null = True, blank = True)
+    death = models.DateField(null = True, blank = True)
 
     def __str__(self):
         return self.first_name +  " " + self.last_name
@@ -18,17 +18,17 @@ class Seat(models.Model):
     """Model representing every possible seat in city council"""
 
     SEATS = (
-        ('1', "1st District",
-         '2', "2nd District",
-         '3', "3rd District",
-         '4', "4th District",
-         '5', "5th District",
-         '6', "6th District",
-         '7', "7th District",
-         '8', "8th District",
-         '9', "9th District",
-         '10', "10th District",
-         "AL", "At Large")
+        ('1', "1st District"),
+         ('2', "2nd District"),
+         ('3', "3rd District"),
+         ('4', "4th District"),
+         ('5', "5th District"),
+         ('6', "6th District"),
+         ('7', "7th District"),
+         ('8', "8th District"),
+         ('9', "9th District"),
+         ('10', "10th District"),
+         ("AL", "At Large")
 
 
     )
@@ -39,7 +39,7 @@ class Seat(models.Model):
 class Election(models.Model):
     """Model representing each Election"""
 
-    election_date = models.DateField()
+    election_date = models.DateField(null = False, blank = False)
 
     ELECTION_TYPES = (
         ('p', 'Primary'),
@@ -49,15 +49,42 @@ class Election(models.Model):
 
     election_type = models.CharField(max_length=1, choices=ELECTION_TYPES,blank=False, null=False)
 
-class Candiate(models.Model):
-    """Model representing a candidate for city council.  May or may not end up holding a seat."""
+    election_seat = models.ForeignKey('Seat', on_delete=models.RESTRICT, null=False, blank=False )
 
-    pass
+
+class Candidate(models.Model):
+    """Model representing a candidate for city council.  May or may not end up holding a seat."""
+    
+    candidate_person = models.ForeignKey("Person", on_delete=models.CASCADE, blank=False, null=False)
+    candidate_election = models.ForeignKey("Election", on_delete=models.CASCADE, blank=False, null=False)
+    candidate_seat = models.ForeignKey("Seat", on_delete=models.CASCADE, blank=False, null=False)
+
+    RESULTS = (
+        ('w', 'Win'),
+        ('l', 'Lose'),
+    )
+
+    candidate_resuts = models.CharField(max_length=1, choices=RESULTS, blank=True, null=True)
 
 
 class Term(models.Model):
     """Model representing every term a Person holds a Seat """
 
-    councilmember = models.ForeignKey("Candidate")
-    pass 
+    councilmember = models.ForeignKey("Candidate", on_delete=models.RESTRICT)
+    term_start_date = models.DateField(null = False, blank = False)
+    term_end_date = models.DateField(null = False, blank = False)
+
+    left_early = models.BooleanField(null = False, blank = False)
+    left_date = models.DateField(null = False, blank = False)
+
+    REASON_FOR_LEAVING = (
+        ('a', 'Resigned for another election'),
+        ('s', 'Resigned in shame (indicted)'),
+        ('r', 'Retired'),
+        ('l', 'Lost election'),
+        ('t', 'Term ended; re-elected'),
+        ('u', 'Unknown'),
+    )
+
+    term_end_reason = models.CharField(max_length=1, choices = REASON_FOR_LEAVING, blank=False, null=False ) 
 
