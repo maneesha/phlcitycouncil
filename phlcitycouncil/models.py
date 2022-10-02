@@ -137,6 +137,5 @@ class Term(models.Model):
     def __str__(self):
         member_name = self.councilmember.candidate_person.first_name + " " + self.councilmember.candidate_person.last_name
         term_duration = str(self.term_start_date) + " to " + str(self.term_end_date)
-        office = self.councilmember.candidate_seat.get_seat_name_display()
+        office = self.councilmember.candidate_election.election_seat.get_seat_name_display()
         return member_name + ", " + term_duration + ", " + office
-
