@@ -74,6 +74,10 @@ class Election(models.Model):
 
     election_seat = models.ForeignKey('Seat', on_delete=models.RESTRICT, null=False, blank=False )
 
+
+    class Meta:
+        unique_together = ('election_date', 'election_type', 'election_seat')
+
     def __str__(self):
         date_string = self.election_date.strftime('%Y')
         election_type_verbose = self.get_election_type_display()
