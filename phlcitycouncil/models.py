@@ -35,7 +35,7 @@ class Seat(models.Model):
     seat_name = models.CharField(max_length = 2, choices = SEATS, blank=False, null=False) 
 
     def __str__(self):
-        return self.seat_name 
+        return self.get_seat_name_display()
 
 
 
