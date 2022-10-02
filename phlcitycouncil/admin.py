@@ -7,7 +7,7 @@ from .models import Person, Seat, Election, Candidate, Term
 # admin.site.register(Person)
 admin.site.register(Seat)
 # admin.site.register(Election)
-admin.site.register(Candidate)
+# admin.site.register(Candidate)
 admin.site.register(Term)
 
 class CandidateInline(admin.TabularInline):
@@ -23,4 +23,9 @@ class PersonAdmin(admin.ModelAdmin):
 @admin.register(Election)
 class ElectionAdmin(admin.ModelAdmin):
     list_diplay = ['__str__']
-    
+
+
+@admin.register(Candidate)
+class CandidateAdmin(admin.ModelAdmin):
+    list_filter = ('candidate_person', 'candidate_election', 'candidate_resuts')
+
