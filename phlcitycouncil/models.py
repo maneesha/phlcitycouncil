@@ -34,10 +34,7 @@ class Seat(models.Model):
     )
     seat_name = models.CharField(max_length = 2, choices = SEATS, blank=False, null=False) 
 
-class Candiate(models.Model):
-    """Model representing a candidate for city council.  May or may not end up holding a seat."""
 
-    pass
 
 class Election(models.Model):
     """Model representing each Election"""
@@ -52,7 +49,10 @@ class Election(models.Model):
 
     election_type = models.CharField(max_length=1, choices=ELECTION_TYPES,blank=False, null=False)
 
+class Candiate(models.Model):
+    """Model representing a candidate for city council.  May or may not end up holding a seat."""
 
+    pass
 
 
 class Term(models.Model):
