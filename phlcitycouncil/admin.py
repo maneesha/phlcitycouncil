@@ -6,7 +6,7 @@ from .models import Person, Seat, Election, Candidate, Term
 
 # admin.site.register(Person)
 admin.site.register(Seat)
-admin.site.register(Election)
+# admin.site.register(Election)
 admin.site.register(Candidate)
 admin.site.register(Term)
 
@@ -19,3 +19,8 @@ class PersonAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'birth', 'death')
     fields = ['first_name', 'middle_name', 'last_name', 'gender', 'race', ('birth', 'death')]
     inlines = [CandidateInline]
+
+@admin.register(Election)
+class ElectionAdmin(admin.ModelAdmin):
+    list_diplay = ['__str__']
+    
