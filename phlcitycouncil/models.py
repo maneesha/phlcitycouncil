@@ -21,7 +21,15 @@ class Candiate(models.Model):
 class Election(models.Model):
     """Model representing each Election"""
 
-    pass 
+    election_date = models.DateField()
+
+    ELECTION_TYPES = (
+        ('p', 'Primary'),
+        ('g', 'General'),
+        ('s', 'Special'),
+    )
+
+    election_type = models.CharField(max_length=1, choices=ELECTION_TYPES,blank=False, null=False)
 
 class Seat(models.Model):
     """Model representing every possible seat in city council"""
@@ -47,5 +55,6 @@ class Seat(models.Model):
 class Term(models.Model):
     """Model representing every term a Person holds a Seat """
 
+    councilmember = models.ForeignKey("Candidate")
     pass 
 
