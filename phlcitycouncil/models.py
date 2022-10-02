@@ -5,7 +5,7 @@ class Person(models.Model):
     """Model representing a person (not candidate/role)"""
 
     first_name = models.CharField(max_length=50)
-    middle_name = models.CharField(max_length=50)
+    middle_name = models.CharField(max_length=50, blank=True, null=True)
     last_name = models.CharField(max_length=50)
 
     birth = models.DateField(null = True, blank = True)
