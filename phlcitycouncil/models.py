@@ -34,6 +34,9 @@ class Seat(models.Model):
     )
     seat_name = models.CharField(max_length = 2, choices = SEATS, blank=False, null=False) 
 
+    def __str__(self):
+        return self.seat_name 
+
 
 
 class Election(models.Model):
@@ -51,6 +54,10 @@ class Election(models.Model):
 
     election_seat = models.ForeignKey('Seat', on_delete=models.RESTRICT, null=False, blank=False )
 
+    def __str__(self):
+        date_string = str(self.election_date)
+        election_type_verbose = self.get_election_type_display()
+        return election_type_verbose + " Election, " + date_string
 
 class Candidate(models.Model):
     """Model representing a candidate for city council.  May or may not end up holding a seat."""
@@ -65,6 +72,11 @@ class Candidate(models.Model):
     )
 
     candidate_resuts = models.CharField(max_length=1, choices=RESULTS, blank=True, null=True)
+
+    def __str__(self):
+        full_name = self.candidate_person.first_name + " " + self.candidate_person.last_name
+        seat_verbose = self.candidate_seat.get_seat_name_display()
+        return  full_name + ", " + seat_verbose
 
 
 class Term(models.Model):
