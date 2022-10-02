@@ -55,9 +55,11 @@ class Election(models.Model):
     election_seat = models.ForeignKey('Seat', on_delete=models.RESTRICT, null=False, blank=False )
 
     def __str__(self):
-        date_string = str(self.election_date)
+        date_string = self.election_date.strftime('%Y')
         election_type_verbose = self.get_election_type_display()
-        return election_type_verbose + " Election, " + date_string
+        election_seat_verbose = self.election_seat.get_seat_name_display()
+
+        return election_type_verbose + " Election (" + date_string + "), " + election_seat_verbose
 
 class Candidate(models.Model):
     """Model representing a candidate for city council.  May or may not end up holding a seat."""
