@@ -22,6 +22,14 @@ class Person(models.Model):
 
     race = models.CharField(choices = RACE, max_length = 1, null=True, blank=True)
 
+    GENDER = (
+        ('f', 'Female'),
+        ('m', 'Male'),
+        ('o', "Non-binary/other")
+    )
+
+    gender = models.CharField(choices = GENDER, max_length=1, null=True, blank=True)
+
     def __str__(self):
         return self.first_name +  " " + self.last_name
 

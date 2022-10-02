@@ -17,5 +17,5 @@ class CandidateInline(admin.TabularInline):
 @admin.register(Person)
 class PersonAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'birth', 'death')
-    fields = ['first_name', 'middle_name', 'last_name', 'race', ('birth', 'death')]
+    fields = ['first_name', 'middle_name', 'last_name', 'gender', 'race', ('birth', 'death')]
     inlines = [CandidateInline]
