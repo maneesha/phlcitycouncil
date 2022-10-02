@@ -30,6 +30,8 @@ class Person(models.Model):
 
     gender = models.CharField(choices = GENDER, max_length=1, null=True, blank=True)
 
+    notes = models.TextField()
+
     def __str__(self):
         return self.first_name +  " " + self.last_name
 
