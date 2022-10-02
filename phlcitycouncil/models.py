@@ -10,6 +10,16 @@ class Person(models.Model):
     birth = models.DateField(null = True, blank = True)
     death = models.DateField(null = True, blank = True)
 
+    RACE = (
+        ('w', 'White'),
+        ('b', 'Black/African American'),
+        ('a', 'Asian'),
+        ('h', 'Hispanic/Latino'),
+        ('o', 'Other')
+    )
+
+    race = models.CharField(choices = RACE, max_length = 1, null=True, blank=True)
+
     def __str__(self):
         return self.first_name +  " " + self.last_name
 
