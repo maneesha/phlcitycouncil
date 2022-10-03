@@ -8,7 +8,7 @@
   <ul>
     {% for person in person_list %}
       <li>
-        {{ person.first_name }} {{ person.last_name}}
+        <a href="{{ person.get_absolute_url }}">{{ person.first_name }} {{ person.last_name}}</a>  
       </li>
     {% endfor %}
   </ul>
