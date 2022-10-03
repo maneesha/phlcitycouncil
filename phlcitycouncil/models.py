@@ -32,6 +32,9 @@ class Person(models.Model):
 
     notes = models.TextField(blank=True, null=True)
 
+    class Meta:
+        ordering = ['last_name', 'first_name']
+
     def __str__(self):
         return self.first_name +  " " + self.last_name
 
@@ -56,6 +59,9 @@ class Seat(models.Model):
     )
     seat_name = models.CharField(max_length = 2, choices = SEATS, blank=False, null=False, unique=True) 
 
+    class Meta:
+        ordering = ['seat_name']
+
     def __str__(self):
         return self.get_seat_name_display()
 
@@ -79,6 +85,7 @@ class Election(models.Model):
 
     class Meta:
         unique_together = ('election_date', 'election_type', 'election_seat')
+        ordering = ['election_date', 'election_type', 'election_seat']
 
     def __str__(self):
         date_string = self.election_date.strftime('%Y')
@@ -100,6 +107,9 @@ class Candidate(models.Model):
     )
 
     candidate_results = models.CharField(max_length=1, choices=RESULTS, blank=True, null=True)
+
+    class Meta:
+        ordering = ['candidate_election__election_seat__seat_name']
 
     def __str__(self):
         full_name = self.candidate_person.first_name + " " + self.candidate_person.last_name
@@ -133,6 +143,9 @@ class Term(models.Model):
     )
 
     term_end_reason = models.CharField(max_length=1, choices = REASON_FOR_LEAVING, blank=False, null=False ) 
+
+    class Meta:
+        ordering = ['term_start_date', 'term_end_date', 'councilmember__candidate_person__last_name']
 
     def __str__(self):
         member_name = self.councilmember.candidate_person.first_name + " " + self.councilmember.candidate_person.last_name
