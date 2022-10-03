@@ -1,0 +1,12 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+
+<h1>{{ person.first_name }} {{ person.last_name }}</h1>
+
+<p>Gender: {{ person.get_gender_display}} </p>
+<p>Race: {{ person.get_race_display }} </p>
+
+<p>Date of Birth: {{ person.date_of_birth }} </p>
+<p>Date of Death: {{ person.date_of_death }} </p>
+{% endblock %}
