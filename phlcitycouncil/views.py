@@ -21,3 +21,6 @@ def index(request):
 
 class PersonView(generic.ListView):
     model = Person
+
+class PersonDetailView(generic.DetailView):
+    model = Person
