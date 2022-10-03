@@ -115,6 +115,8 @@ class Candidate(models.Model):
 
     class Meta:
         ordering = ['candidate_election__election_seat__seat_name']
+        unique_together = ('candidate_person', 'candidate_election')
+
 
     def __str__(self):
         full_name = self.candidate_person.first_name + " " + self.candidate_person.last_name
