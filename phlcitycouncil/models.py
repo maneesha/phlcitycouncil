@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse # Used to generate URLs by reversing the URL patterns
 
 # Create your models here.
 class Person(models.Model):
@@ -37,6 +38,10 @@ class Person(models.Model):
 
     def __str__(self):
         return self.first_name +  " " + self.last_name
+
+    def get_absolute_url(self):
+        """Returns the URL to access a detail record for this book."""
+        return reverse('person-detail', args=[str(self.id)])
 
 
 class Seat(models.Model):
