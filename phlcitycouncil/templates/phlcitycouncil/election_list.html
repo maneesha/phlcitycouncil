@@ -1,0 +1,17 @@
+
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Election List</h1>
+  {% if election_list %}
+  <ul>
+    {% for election in election_list %}
+      <li>
+        <a href="#">{{ election.election_date }} {{ election.election_seat }}</a>  
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no elections on record.</p>
+  {% endif %}
+{% endblock %}
