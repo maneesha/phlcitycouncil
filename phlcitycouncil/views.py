@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import generic 
 
-from .models import Person, Seat
+from .models import Person, Seat, Election
 
 # Create your views here.
 
@@ -24,3 +24,9 @@ class PersonView(generic.ListView):
 
 class PersonDetailView(generic.DetailView):
     model = Person
+
+class ElectionView(generic.ListView):
+    model = Election
+
+class ElectionDetailView(generic.DetailView):
+    model = Election 
