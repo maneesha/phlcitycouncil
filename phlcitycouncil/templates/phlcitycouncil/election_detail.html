@@ -1,0 +1,29 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+
+<h1>Election</h1>
+
+<p>{{ election.election_date }} </p>
+<p>{{ election.election_type }}</p>
+<p>{{ election.election_seat }}</p>
+<p>{{ election.candidate_set.all }}</p>
+
+<!-- <p>Gender: {{ person.get_gender_display}} </p>
+<p>Race: {{ person.get_race_display }} </p>
+
+<p>Date of Birth: {{ person.date_of_birth }} </p>
+<p>Date of Death: {{ person.date_of_death }} </p>
+
+
+
+<h2>Elections</h2>
+<ul>
+{% for p in person.candidate_set.all %}
+
+<li> {{ p.candidate_election.election_date|date:"Y" }} {{ p.candidate_election.get_election_type_display }} Election, {{ p.candidate_election.election_seat.get_seat_name_display }}: {{ p.get_candidate_results_display }}</li>
+
+{% endfor %}
+</ul> -->
+{% endblock %}
+
