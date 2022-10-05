@@ -2,47 +2,25 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1>Election List</h1>
-  {% if election_list %}
 
+<!-- <h1>YEARS</h1> {{ election.years }}
+<h1>TYPES </h1> {{ election.types }}
 
-<h2>2015 Elections</h2>
-<ul>
-{% for election in election_list %}
-{% if election.election_date|date:"Y" == "2015" %}
-    <li>
-    <a href="#">{{ election.election_date }} {{ election.election_seat }} </a>  
-    </li>
-    {% endif %}
+<br>
+
+<h1>ELECTIONS</h1>  {{ election.election }}  -->
+
+<h1>Philadelphia City Council Elections</h1>
+{% for yr in election.years %}
+
+    <h2>{{ yr.year }} Elections</h2>
+    {% for el in election.election %}
+        {% if el.election_date|date:"Y"|stringformat:"s"  == yr.year|stringformat:"s"  %} 
+        {{ el }}<br> 
+        {% endif %}
     {% endfor %}
-</ul>
 
-<h2>2019 Elections</h2>
-  <ul>
-    {% for election in election_list %}
-    {% if election.election_date|date:"Y" == "2019" %}
-      <li>
-        <a href="#">{{ election.election_date }} {{ election.election_seat }} </a>  
-      </li>
-      {% endif %}
-      {% endfor %}
-  </ul>
+{% endfor %}
 
-  <h2>2022 Elections</h2>
-  <ul>
-    {% for election in election_list %}
-    {% if election.election_date|date:"Y" == "2022" %}
-      <li>
-        <a href="#">{{ election.election_date }} {{ election.election_seat }} </a>  
-      </li>
-      {% endif %}
-      {% endfor %}
-  </ul>
+{% endblock %} 
 
-
-
-
-  {% else %}
-    <p>There are no elections on record.</p>
-  {% endif %}
-{% endblock %}
