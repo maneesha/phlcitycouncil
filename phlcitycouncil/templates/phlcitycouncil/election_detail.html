@@ -10,7 +10,7 @@
 <ul>
 {% for c in election.candidate_set.all %}
 
-<li>{{ c.candidate_person }}</li>
+<li><a href="{{ c.candidate_person.get_absolute_url }}">{{ c.candidate_person }}</a></li>
 
 {% endfor %}
 
