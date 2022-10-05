@@ -4,8 +4,8 @@
 
 <h1>{{ person.first_name }} {{ person.last_name }}</h1>
 
-<p>Gender: {{ person.get_gender_display}} </p>
-<p>Race: {{ person.get_race_display }} </p>
+<p>Gender: {{ person.get_gender_display|default_if_none:"unknown"}} </p>
+<p>Race: {{ person.get_race_display|default_if_none:"unknown" }} </p>
 
 <p>Date of Birth: {{ person.date_of_birth }} </p>
 <p>Date of Death: {{ person.date_of_death }} </p>
