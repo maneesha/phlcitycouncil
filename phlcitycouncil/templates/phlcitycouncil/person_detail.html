@@ -16,9 +16,10 @@
 <ul>
 {% for p in person.candidate_set.all %}
 
-<li> {{ p.candidate_election.election_date|date:"Y" }} {{ p.candidate_election.get_election_type_display }} Election, {{ p.candidate_election.election_seat.get_seat_name_display }}: {{ p.get_candidate_results_display }}</li>
+<li> <a href="{{ p.candidate_election.get_absolute_url}}">
+     {{ p.candidate_election.election_date|date:"Y" }} {{ p.candidate_election.get_election_type_display }} Election</a>, 
+     {{ p.candidate_election.election_seat.get_seat_name_display }}: {{ p.get_candidate_results_display }}</li>
 
 {% endfor %}
 </ul>
 {% endblock %}
-
