@@ -119,6 +119,8 @@ class Candidate(models.Model):
 
     candidate_results = models.CharField(max_length=1, choices=RESULTS, blank=True, null=True)
 
+    candidate_votes_received = models.PositiveIntegerField()
+
     class Meta:
         ordering = ['candidate_election__election_seat__seat_name']
         unique_together = ('candidate_person', 'candidate_election')
