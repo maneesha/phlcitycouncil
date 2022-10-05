@@ -99,6 +99,12 @@ class Election(models.Model):
 
         return election_type_verbose + " Election (" + date_string + "), " + election_seat_verbose
 
+
+    def get_absolute_url(self):
+        """Returns the URL to access a detail record for this book."""
+        return reverse('election-detail', args=[str(self.id)])
+
+
 class Candidate(models.Model):
     """Model representing a candidate for city council.  May or may not end up holding a seat."""
     
