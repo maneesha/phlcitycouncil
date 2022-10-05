@@ -16,11 +16,10 @@
     <h2>{{ yr.year }} Elections</h2>
     {% for el in election.election %}
         {% if el.election_date|date:"Y"|stringformat:"s"  == yr.year|stringformat:"s"  %} 
-        {{ el }}<br> 
+        <a href=" {{ el.get_absolute_url }}">{{ el }}</a><br> 
         {% endif %}
     {% endfor %}
 
 {% endfor %}
 
 {% endblock %} 
-
