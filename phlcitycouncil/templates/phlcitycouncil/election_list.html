@@ -13,7 +13,7 @@
 <h1>Philadelphia City Council Elections</h1>
 {% for yr in election.years %}
 
-    <h2>{{ yr.year }} Elections</h2>
+    <h2>{{ yr.year|stringformat:"s" }} Elections</h2>
     {% for el in election.election %}
         {% if el.election_date|date:"Y"|stringformat:"s"  == yr.year|stringformat:"s"  %} 
         <a href=" {{ el.get_absolute_url }}">{{ el }}</a><br> 
