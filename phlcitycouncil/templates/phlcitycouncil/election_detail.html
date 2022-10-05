@@ -7,19 +7,14 @@
 <p>Election date: {{ election.election_date }} </p>
 
 <h2>Candidates</h2>
-{{ election.candidate_set.all }}
 
 <ul>
-{% for c in election.candidate_set.all %}
-
-
-<li>
-    <a href="{{ c.candidate_person.get_absolute_url }}">{{ c.candidate_person }}</a>,
-    {{ c.candidate_votes_received }} votes received
-</li>
-
-{% endfor %}
-
+    {% for c in election.candidate_set.all|dictsortreversed:'candidate_votes_received' %}
+        <li>
+            <a href="{{ c.candidate_person.get_absolute_url }}">{{ c.candidate_person }}</a>,
+            {{ c.candidate_votes_received }} votes received ({{ c.get_candidate_results_display}})
+        </li>
+    {% endfor %}
 </ul>
 
 </p>
