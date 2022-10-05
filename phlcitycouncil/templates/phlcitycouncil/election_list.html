@@ -11,7 +11,7 @@
 <h1>ELECTIONS</h1>  {{ election.election }}  -->
 
 <h1>Philadelphia City Council Elections</h1>
-{% for yr in election.years %}
+{% for yr in election.years|dictsortreversed:"year" %}
 
     <h2>{{ yr.year|stringformat:"s" }} Elections</h2>
     {% for el in election.election %}
@@ -22,4 +22,4 @@
 
 {% endfor %}
 
-{% endblock %} 
+{% endblock %}
