@@ -23,9 +23,11 @@ class PersonAdmin(admin.ModelAdmin):
 @admin.register(Election)
 class ElectionAdmin(admin.ModelAdmin):
     list_diplay = ['__str__']
+    search_fields = [ 'election_date',]
 
 
 @admin.register(Candidate)
 class CandidateAdmin(admin.ModelAdmin):
     list_filter = ('candidate_person', 'candidate_election', 'candidate_results')
+    autocomplete_fields = ['candidate_election']
 
