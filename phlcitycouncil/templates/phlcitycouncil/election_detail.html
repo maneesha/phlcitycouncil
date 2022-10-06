@@ -8,6 +8,8 @@
 
 <h2>Candidates</h2>
 
+<p>There were {{ election.candidate_set.all.count }} candidates in this election.</p>
+
 <ul>
     {% for c in election.candidate_set.all|dictsortreversed:'candidate_votes_received' %}
         <li>
