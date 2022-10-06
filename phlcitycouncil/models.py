@@ -145,8 +145,8 @@ class Term(models.Model):
     term_start_date = models.DateField(null = False, blank = False)
     term_end_date = models.DateField(null = False, blank = False)
 
-    left_early = models.BooleanField(null = False, blank = False)
-    left_date = models.DateField(null = False, blank = False)
+    left_early = models.BooleanField(null = True, blank = True)
+    left_date = models.DateField(null = True, blank = True)
 
     REASON_FOR_LEAVING = (
         ('a', 'Resigned for another election'),
