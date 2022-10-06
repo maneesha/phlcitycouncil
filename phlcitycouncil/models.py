@@ -157,7 +157,7 @@ class Term(models.Model):
         ('u', 'Unknown'),
     )
 
-    term_end_reason = models.CharField(max_length=1, choices = REASON_FOR_LEAVING, blank=False, null=False ) 
+    term_end_reason = models.CharField(max_length=1, choices = REASON_FOR_LEAVING, blank=True, null=True ) 
 
     class Meta:
         ordering = ['term_start_date', 'term_end_date', 'councilmember__candidate_person__last_name']
