@@ -10,6 +10,12 @@
 
 <p>There were {{ election.candidate_set.all.count }} candidates in this election.</p>
 
+{% if  election.candidate_set.all.count == 1 %}
+<p>The winning candidate ran unopposed.</p>
+
+{% endif %}
+
+
 <ul>
     {% for c in election.candidate_set.all|dictsortreversed:'candidate_votes_received' %}
         <li>
