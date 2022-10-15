@@ -7,5 +7,6 @@ urlpatterns = [
     path('person/<int:pk>', views.PersonDetailView.as_view(), name = 'person-detail'),
     path('election/', views.ElectionView.as_view(), name = 'election' ),
     path('election/<int:pk>', views.ElectionDetailView.as_view(), name = "election-detail"),
+    path('term/', views.TermView.as_view(), name="term")
 
 ]
