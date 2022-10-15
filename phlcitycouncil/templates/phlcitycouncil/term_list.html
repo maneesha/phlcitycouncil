@@ -1,0 +1,32 @@
+
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+
+<h1>Philadelphia City Council Elections</h1>
+
+
+{{ term_list }}
+
+<hr><hr>
+
+
+{% for t in term_list %}
+{{ t.councilmember.candidate_election.election_seat }}
+{% endfor %}
+
+
+
+<!-- {% for yr in election.years|dictsortreversed:"year" %}
+
+    <h2>{{ yr.year|stringformat:"s" }} Elections</h2>
+    {% for el in election.election %}
+        {% if el.election_date|date:"Y"|stringformat:"s"  == yr.year|stringformat:"s"  %} 
+        <a href=" {{ el.get_absolute_url }}">{{ el }}</a><br> 
+        {% endif %}
+    {% endfor %}
+
+{% endfor %} -->
+
+{% endblock %}
