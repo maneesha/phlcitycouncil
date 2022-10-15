@@ -16,7 +16,15 @@
     <h2>{{ yr.year|stringformat:"s" }} Elections</h2>
     {% for el in election.election %}
         {% if el.election_date|date:"Y"|stringformat:"s"  == yr.year|stringformat:"s"  %} 
-        <a href=" {{ el.get_absolute_url }}">{{ el }}</a><br> 
+        <a href=" {{ el.get_absolute_url }}">{{ el }}</a>; 
+        {{ el.candidate_set.all.count }} candidate{{ el.candidate_set.all.count|pluralize }}
+
+        {% if el.candidate_set.all.count == 1 %} (Unopposed) {% endif %}
+
+
+        <br> 
+
+
         {% endif %}
     {% endfor %}
 
