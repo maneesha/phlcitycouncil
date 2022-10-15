@@ -3,7 +3,7 @@ from django.views import generic
 from django.db.models.functions import ExtractYear
 
 
-from .models import Person, Seat, Election
+from .models import Person, Seat, Election, Term 
 
 # Create your views here.
 
@@ -46,3 +46,6 @@ class ElectionView(generic.ListView):
 
 class ElectionDetailView(generic.DetailView):
     model = Election 
+
+class TermView(generic.ListView):
+    model = Term 
