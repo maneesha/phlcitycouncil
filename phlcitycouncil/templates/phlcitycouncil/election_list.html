@@ -3,31 +3,21 @@
 
 {% block content %}
 
-<!-- <h1>YEARS</h1> {{ election.years }}
-<h1>TYPES </h1> {{ election.types }}
-
-<br>
-
-<h1>ELECTIONS</h1>  {{ election.election }}  -->
-
 <h1>Philadelphia City Council Elections</h1>
-{% for yr in election.years|dictsortreversed:"year" %}
+{% for yr in election.years|dictsortreversed:"year" %}    <hr>
 
     <h2>{{ yr.year|stringformat:"s" }} Elections</h2>
+
     {% for el in election.election %}
         {% if el.election_date|date:"Y"|stringformat:"s"  == yr.year|stringformat:"s"  %} 
         <a href=" {{ el.get_absolute_url }}">{{ el }}</a>; 
         {{ el.candidate_set.all.count }} candidate{{ el.candidate_set.all.count|pluralize }}
-
         {% if el.candidate_set.all.count == 1 %} (Unopposed) {% endif %}
-
-
         <br> 
-
-
         {% endif %}
     {% endfor %}
 
+<br>
 {% endfor %}
 
 {% endblock %}
