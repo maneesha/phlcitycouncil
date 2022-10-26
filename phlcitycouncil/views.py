@@ -3,7 +3,7 @@ from django.views import generic
 from django.db.models.functions import ExtractYear
 
 
-from .models import Person, Seat, Election, Term 
+from .models import Person, Seat, Election, Term, Candidate
 
 # Create your views here.
 
