@@ -1,4 +1,10 @@
+
+
+
 {% extends 'base_generic.html' %}
+
+
+
 
 {% block content %}
 
@@ -27,5 +33,60 @@
 
 </p>
 
-{% endblock %}
 
+
+<h2>TEST</h2>
+election.candidate_set.values: 
+{{ election.candidate_set.values }}
+///end 
+<hr>
+
+election.election_type
+ {{ election.election_type }}
+///end
+<hr>
+
+election.eq 
+ {{ election.eq }}
+///end 
+<hr>
+
+election.v
+{{ election.v }} 
+<!-- {{ election_detail.election_detail }} -->
+///end 
+<hr>
+
+election.detail
+{{ election_detail }}
+//end 
+<hr>
+
+election 
+{{ election }} 
+///end 
+<hr>
+
+election.candidate_set.all.values
+{{ election.candidate_set.all.values }}
+///end
+<hr>
+
+
+<h2>END TEST</h2>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
+
+<canvas id="chart"></canvas>
+
+
+{% block scripts %}
+<script type = "text/javascript">
+  var somVar = "{{ election.candidate_set.values|safe }}"
+  console.log(somVar)
+  console.log(typeof somVar)
+
+</script>
+
+{% endblock scripts %}
+
+{% endblock %}
