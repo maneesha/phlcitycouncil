@@ -26,6 +26,10 @@ class PersonSerializer(serializers.ModelSerializer):
 
 class CandidateSerializer(serializers.ModelSerializer):
 
+    # election = ElectionSerializer(many = True, read_only = True)
+    person = PersonSerializer(many = True, read_only = True)
+
     class Meta:
         model = Candidate
-        fields = ('candidate_person', 'candidate_election', 'candidate_results', 'candidate_votes_received')
+        depth = 1
+        fields = ('candidate_person', 'candidate_election', 'candidate_results', 'candidate_votes_received', 'person')
