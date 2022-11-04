@@ -12,6 +12,7 @@ urlpatterns = [
     path('api/election/<int:pk>/', views.ElectionDetailAPI.as_view()),
     path('api/person/', views.PersonListAPI.as_view()),
     path('api/person/<int:pk>', views.PersonDetailAPI.as_view()),
-
+    path('api/candidate/', views.CandidateListAPI.as_view()),
+    path('api/candidate/<int:pk>', views.CandidateDetailAPI.as_view())
 
 ]
