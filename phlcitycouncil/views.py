@@ -3,7 +3,7 @@ from django.views import generic
 from django.db.models.functions import ExtractYear
 
 from rest_framework import generics
-from .serializers import ElectionSerializer, PersonSerializer
+from .serializers import ElectionSerializer, PersonSerializer, CandidateSerializer
 
 
 from .models import Person, Seat, Election, Term, Candidate
@@ -86,4 +86,10 @@ class PersonDetailAPI(generics.RetrieveAPIView):
     queryset = Person.objects.all()
     serializer_class = PersonSerializer
 
-    
+class CandidateListAPI(generics.ListAPIView):
+    queryset = Candidate.objects.all()
+    serializer_class = CandidateSerializer
+
+class CandidateDetailAPI(generics.RetrieveAPIView):
+    queryset = Candidate.objects.all()
+    serializer_class = CandidateSerializer
