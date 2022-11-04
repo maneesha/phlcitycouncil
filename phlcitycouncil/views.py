@@ -2,6 +2,9 @@ from django.shortcuts import render
 from django.views import generic 
 from django.db.models.functions import ExtractYear
 
+from rest_framework import generics
+from .serializers import ElectionSerializer
+
 
 from .models import Person, Seat, Election, Term, Candidate
 
@@ -66,3 +69,8 @@ class TermView(generic.ListView):
     model = Term 
 
 
+class ElectionList(generics.ListCreateAPIView):
+    queryset = Election.objects.all()
+    serializer_class = ElectionSerializer
+
+    
