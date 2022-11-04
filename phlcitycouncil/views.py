@@ -3,6 +3,9 @@ from django.views import generic
 from django.db.models.functions import ExtractYear
 
 from rest_framework import generics
+from rest_framework.decorators import api_view 
+from rest_framework.response import Response
+from rest_framework.reverse import reverse
 from .serializers import ElectionSerializer, PersonSerializer, CandidateSerializer
 
 
@@ -93,3 +96,11 @@ class CandidateListAPI(generics.ListAPIView):
 class CandidateDetailAPI(generics.RetrieveAPIView):
     queryset = Candidate.objects.all()
     serializer_class = CandidateSerializer
+
+
+@api_view(['GET'])
+def api_root(request, format=None):
+    return Response({
+        'persons': reverse('person_list_api', request=request,format=format),
+        'candidates': reverse('candidate_list_api', request=request, format=format)
+    })
