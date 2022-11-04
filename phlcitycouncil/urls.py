@@ -9,6 +9,7 @@ urlpatterns = [
     path('election/<int:pk>', views.ElectionDetailView.as_view(), name = "election-detail"),
     path('term/', views.TermView.as_view(), name="term"),
     path('api/', views.ElectionList.as_view()),
+    path('api/<int:pk>/', views.ElectionDetailAPI.as_view()),
 
 
 ]
