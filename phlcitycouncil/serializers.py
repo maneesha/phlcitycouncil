@@ -22,3 +22,10 @@ class PersonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Person
         fields = ("first_name", "middle_name",  "last_name", "birth", "death", "race", "gender", "notes")
+
+
+class CandidateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Candidate
+        fields = ('candidate_person', 'candidate_election', 'candidate_results', 'candidate_votes_received')
