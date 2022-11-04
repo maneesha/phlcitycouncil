@@ -85,7 +85,7 @@ class Election(models.Model):
 
     election_type = models.CharField(max_length=1, choices=ELECTION_TYPES,blank=False, null=False)
 
-    election_seat = models.ForeignKey('Seat', on_delete=models.RESTRICT, null=False, blank=False )
+    election_seat = models.ForeignKey('Seat', on_delete=models.RESTRICT, null=False, blank=False, related_name = 'seat' )
 
 
     class Meta:
