@@ -16,3 +16,9 @@ class ElectionSerializer(serializers.ModelSerializer):
         depth = 1
         fields = ('election_date', 'election_type', 'election_seat', 'seat',)
 
+
+class PersonSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Person
+        fields = ("first_name", "middle_name",  "last_name", "birth", "death", "race", "gender", "notes")
