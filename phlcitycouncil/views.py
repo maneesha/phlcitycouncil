@@ -69,7 +69,7 @@ class TermView(generic.ListView):
     model = Term 
 
 
-class ElectionList(generics.ListAPIView):
+class ElectionListAPI(generics.ListAPIView):
     queryset = Election.objects.all()
     serializer_class = ElectionSerializer
 
