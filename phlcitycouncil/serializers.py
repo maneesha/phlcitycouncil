@@ -17,12 +17,13 @@ class ElectionSerializer(serializers.ModelSerializer):
         fields = ('election_date', 'election_type', 'election_seat', 'seat',)
 
 
-class PersonSerializer(serializers.ModelSerializer):
+class PersonSerializer(serializers.HyperlinkedModelSerializer):
+
+    url = serializers.HyperlinkedIdentityField(view_name = "person_detail_api", format="html")
 
     class Meta:
         model = Person
-        fields = ("first_name", "middle_name",  "last_name", "birth", "death", "race", "gender", "notes")
-
+        fields = ("first_name", "middle_name",  "last_name", "birth", "death", "race", "gender", "notes", "url")
 
 class CandidateSerializer(serializers.ModelSerializer):
 
