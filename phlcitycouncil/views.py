@@ -73,4 +73,8 @@ class ElectionList(generics.ListAPIView):
     queryset = Election.objects.all()
     serializer_class = ElectionSerializer
 
+class ElectionDetailAPI(generics.RetrieveAPIView):
+    queryset = Election.objects.all()
+    serializer_class = ElectionSerializer
+
 
