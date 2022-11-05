@@ -25,7 +25,7 @@
 <ul>
     {% for c in election.candidate_set.all|dictsortreversed:'candidate_votes_received' %}
         <li>
-            <a href="{{ c.candidate_person.get_absolute_url }}">{{ c.candidate_person }}</a>,
+            <a href="{{ c.candidate_person.get_absolute_url }}">{{ c.candidate_person }}</a> ({{ c.get_candidate_party_display }}),
             {{ c.candidate_votes_received }} votes received ({{ c.get_candidate_results_display}})
         </li>
     {% endfor %}
