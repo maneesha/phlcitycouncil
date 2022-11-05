@@ -102,5 +102,6 @@ class CandidateDetailAPI(generics.RetrieveAPIView):
 def api_root(request, format=None):
     return Response({
         'persons': reverse('person_list_api', request=request,format=format),
-        'candidates': reverse('candidate_list_api', request=request, format=format)
+        'candidates': reverse('candidate_list_api', request=request, format=format),
+        'elections': reverse('election_list_api', request=request, format=format)
     })
