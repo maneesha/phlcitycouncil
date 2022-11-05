@@ -3,3 +3,5 @@ phlcitycouncil/__pycache__/
 citycouncil/__pycache__/
 
 db.sqlite3
+
+.env
