@@ -118,6 +118,7 @@ class Candidate(models.Model):
         ('i', 'Independent'),
         ('l', 'Libertarian'),
         ('wf', 'Working Families Party'),
+        ('p', 'Progressive'),
     )
 
     candidate_party = models.CharField(max_length = 3, choices=PARTIES, blank=True, null=True, default = "")
