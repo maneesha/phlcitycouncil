@@ -87,17 +87,31 @@ class Election(models.Model):
 
     election_seat = models.ForeignKey('Seat', on_delete=models.RESTRICT, null=False, blank=False, related_name = 'seat' )
 
+    PARTIES = (
+        ('na', "")
+        ('d', 'Democrat'),
+        ('r', 'Republican'),
+        ('i', 'Independent'),
+        ('l', 'Libertarian'),
+        ('wf', 'Working Families Party'),
+        ('p', 'Progressive'),
+    )
+
+    election_party = models.CharField(max_length = 3, choices=PARTIES, blank=False, null=False, default = "na")
+
+
 
     class Meta:
-        unique_together = ('election_date', 'election_type', 'election_seat')
+        unique_together = ('election_date', 'election_type', 'election_seat', 'election_party')
         ordering = ['election_date', 'election_type', 'election_seat']
 
     def __str__(self):
         date_string = self.election_date.strftime('%Y')
         election_type_verbose = self.get_election_type_display()
         election_seat_verbose = self.election_seat.get_seat_name_display()
+        election_party_verbose = self.get_election_party_display()
 
-        return election_type_verbose + " Election (" + date_string + "), " + election_seat_verbose
+        return election_type_verbose + " Election (" + date_string + "), " + election_seat_verbose + " " + election_party_verbose
 
 
     def get_absolute_url(self):
