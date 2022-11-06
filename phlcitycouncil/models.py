@@ -122,7 +122,7 @@ class Election(models.Model):
 class Candidate(models.Model):
     """Model representing a candidate for city council.  May or may not end up holding a seat."""
     
-    candidate_person = models.ForeignKey("Person", on_delete=models.CASCADE, blank=False, null=False, related_name = "person")
+    candidate_person = models.ForeignKey("Person", on_delete=models.CASCADE, blank=False, null=False,)
     candidate_election = models.ForeignKey("Election", on_delete=models.CASCADE, blank=False, null=False,)
     # candidate_seat = models.ForeignKey("Seat", on_delete=models.CASCADE, blank=False, null=False)
 
