@@ -88,7 +88,7 @@ class Election(models.Model):
     election_seat = models.ForeignKey('Seat', on_delete=models.RESTRICT, null=False, blank=False, related_name = 'seat' )
 
     PARTIES = (
-        ('na', "")
+        ('na', ""),
         ('d', 'Democrat'),
         ('r', 'Republican'),
         ('i', 'Independent'),
