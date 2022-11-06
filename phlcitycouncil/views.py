@@ -39,14 +39,20 @@ class ElectionView(generic.ListView):
     context_object_name = 'election'
 
     def get_queryset(self):
-        # return Election.objects.filter(election_type = 's')
+
         queryset = {
             'election':Election.objects.all(),
-            'special':Election.objects.filter(election_type = 's').values(),
-            'primary':Election.objects.filter(election_type = 'p'),
-            'general':Election.objects.filter(election_type = 'g'),
-            'years': Election.objects.order_by().values('election_date').distinct().annotate(year=ExtractYear('election_date')).values('year'),
-            'types':Election.objects.order_by().values('election_type').distinct(),
+
+            'special2022' : Election.objects.filter(election_date__year = 2022).filter(election_type = 's'),
+
+            'general2019' : Election.objects.filter(election_date__year = 2019).filter(election_type = 'g'),
+            'primary2019' : Election.objects.filter(election_date__year = 2019).filter(election_type = 'p'),
+
+            'general2015' : Election.objects.filter(election_date__year = 2015).filter(election_type = 'g'),
+            'primary2015' : Election.objects.filter(election_date__year = 2015).filter(election_type = 'p'),
+
+            'general2011' : Election.objects.filter(election_date__year = 2011).filter(election_type = 'g'),
+            'primary2011' : Election.objects.filter(election_date__year = 2011).filter(election_type = 'p'),
         }
         return queryset
 
