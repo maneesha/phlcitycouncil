@@ -4,20 +4,32 @@
 {% block content %}
 
 <h1>Philadelphia City Council Elections</h1>
-{% for yr in election.years|dictsortreversed:"year" %}    <hr>
 
-    <h2>{{ yr.year|stringformat:"s" }} Elections</h2>
+<hr>
+<h2>2022 Special Election</h2>
+{% for el in election.special2022 %}
+<a href=" {{ el.get_absolute_url }}">{{ el }}</a>; 
+{{ el.candidate_set.all.count }} candidate{{ el.candidate_set.all.count|pluralize }}
+{% if el.candidate_set.all.count == 1 %} (Unopposed) {% endif %}
+<br> 
+{% endfor %}
 
-    {% for el in election.election %}
-        {% if el.election_date|date:"Y"|stringformat:"s"  == yr.year|stringformat:"s"  %} 
-        <a href=" {{ el.get_absolute_url }}">{{ el }}</a>; 
-        {{ el.candidate_set.all.count }} candidate{{ el.candidate_set.all.count|pluralize }}
-        {% if el.candidate_set.all.count == 1 %} (Unopposed) {% endif %}
-        <br> 
-        {% endif %}
-    {% endfor %}
+<hr>
+<h2>2019 General Election</h2>
+{% for el in election.general2019 %}
+<a href=" {{ el.get_absolute_url }}">{{ el }}</a>; 
+{{ el.candidate_set.all.count }} candidate{{ el.candidate_set.all.count|pluralize }}
+{% if el.candidate_set.all.count == 1 %} (Unopposed) {% endif %}
+<br> 
+{% endfor %}
 
-<br>
+<hr>
+<h2>2015 General Election</h2>
+{% for el in election.general2015 %}
+<a href=" {{ el.get_absolute_url }}">{{ el }}</a>; 
+{{ el.candidate_set.all.count }} candidate{{ el.candidate_set.all.count|pluralize }}
+{% if el.candidate_set.all.count == 1 %} (Unopposed) {% endif %}
+<br> 
 {% endfor %}
 
 {% endblock %}
