@@ -61,16 +61,33 @@ class ElectionDetailView(generic.DetailView):
     Specifying model = Election is shorthand for saying queryset = Election.objects.get(pk=primary_key). 
     https://docs.djangoproject.com/en/4.1/topics/class-based-views/generic-display/
     """
-    model = Election 
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['cand'] = Election.objects.filter(pk=self.kwargs.get('pk'))
-        context['qu'] = Election.objects.all()
-        # context['baseball'] = 'phillies'
-        # context['cand'] = Candidate.objects.all()
-        # context['pers'] = Person.objects.all()
-        return context 
+
+    context_object_name = 'election'
+    queryset = Election.objects.all()
+    # model = Election 
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['data_list'] = Election.objects.all()
+
+    #     return context 
+
+    #     queryset = Election.candidate_set.all
+
+    #     vote_count = []
+    #     for q in queryset:
+    #         vote_count.append(q.candidate_votes_received)
+
+
+    #     context = super().get_context_data(**kwargs)
+    #     context['cand'] = Election.objects.filter(pk=self.kwargs.get('pk'))
+    #     context['qu'] = Election.objects.all()
+    #     context['vote_count'] = vote_count
+    #     # context['baseball'] = 'phillies'
+    #     # context['cand'] = Candidate.objects.all()
+    #     # context['pers'] = Person.objects.all()
+    #     return context 
 
 
 
