@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'phlcitycouncil.apps.PhlcitycouncilConfig',
     'rest_framework',
+    'bootstrap5',
 ]
 
 MIDDLEWARE = [
