@@ -2,12 +2,11 @@
 
 {% block content %}
   <h1>Philadelphia City Council</h1>
-  <p>Welcome to PHL City Council</p>
-  <h2>Dynamic content</h2>
+  <p>Information about Philadelphia City Council Elections</p>
   <p>The City Council App has the following record counts:</p>
   <ul>
-    <li><strong>Persons:</strong> {{ num_persons }}</li>
-    <li><strong>Seats:</strong> {{ num_seats }}</li>
+    <li><strong><a href="{% url 'person' %}">Persons:</a></strong> {{ num_persons }}</li>
+    <li><strong><a href="{% url 'election' %}">Elections:</a></strong> {{ num_seats }}</li>
 
   </ul>
 {% endblock %}
