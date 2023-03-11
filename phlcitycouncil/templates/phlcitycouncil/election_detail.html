@@ -1,11 +1,4 @@
-
-
-
 {% extends 'base_generic.html' %}
-
-
-
-
 
 {% block content %}
 
@@ -34,36 +27,6 @@
 
 </p>
 
-
-
-<h2>Query set display (testing)</h2>
-
-** The queryset I want is: **
-{{ election.candidate_set.values }}
-///end 
-
-<hr>
-
-'data_list' is:  {{ data_list }}
-
-<hr>
-Some values
-{% for i in data_list %}
-<p>{{ i }}</p>
-{% endfor %}
-
-<hr>
-
-'election' is {{ election }}
-
-<hr>
-
-{{ candidates }}
-{{ vote_count }}
-
-{{ results }}
-
-
 <div id="container" style="width: 75%;">
     <canvas id="pie-chart"></canvas>
   </div>
@@ -85,15 +48,36 @@ Some values
     console.log(fj)
     console.log({{ candidates|safe }})
     console.log({{ vote_count|safe  }})
-
+    var barColors = [
+        "#003f5c", 
+        "#665191", 
+        "#d45087", 
+        "#ff7c43", 
+        "#003f5c", 
+        "#665191", 
+        "#d45087", 
+        "#ff7c43", 
+        "#003f5c", 
+        "#665191", 
+        "#d45087", 
+        "#ff7c43", 
+        "#003f5c", 
+        "#665191", 
+        "#d45087", 
+        "#ff7c43", 
+        "#003f5c", 
+        "#665191", 
+        "#d45087", 
+        "#ff7c43", 
+        ];
 
     var config = {
-        type: 'pie',
+        type: 'doughnut',
         data: {
             datasets: [{
                 data: {{ vote_count|safe }},
                 // backgroundColor: ['#696969', '#808080', '#A9A9A9'],
-                backgroundColor: ['red ', 'blue', 'yellow'],
+                backgroundColor: barColors,
                 label: "Election"
                 }],
             labels: {{ candidates|safe }},
