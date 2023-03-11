@@ -1,6 +1,13 @@
 from rest_framework import serializers
 from .models import Election, Candidate, Person, Seat
 
+# What is a seralizer? 
+# Serializers allow complex data such as querysets and model instances to be converted to native Python datatypes that can then be easily rendered into JSON, XML or other content types
+# https://www.django-rest-framework.org/api-guide/serializers/
+# These are imported in the API views in views.py
+
+
+
 class SeatSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -23,7 +30,7 @@ class PersonSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Person
-        fields = ("first_name", "middle_name",  "last_name", "birth", "death", "race", "gender", "notes", "url")
+        fields = ('id', "first_name", "middle_name",  "last_name", "birth", "death", "race", "gender", "notes", "url")
 
 class CandidateSerializer(serializers.ModelSerializer):
 

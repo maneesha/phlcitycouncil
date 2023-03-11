@@ -91,9 +91,14 @@ class ElectionDetailView(generic.DetailView):
 
 
 
+
+
 class TermView(generic.ListView):
     model = Term 
 
+# Serializers are all defined in serilazers.py
+# Associated views for the API are defined here
+# URLs based on these vies are set up in urls.py
 
 class ElectionListAPI(generics.ListAPIView):
     queryset = Election.objects.all()
