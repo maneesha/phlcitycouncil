@@ -32,9 +32,6 @@
 <br> 
 {% endfor %}
 
-
-
-
 <hr>
 <h2>2015 General Election</h2>
 {% for el in election.general2015 %}
@@ -43,9 +40,5 @@
 {% if el.candidate_set.all.count == 1 %} (Unopposed) {% endif %}
 <br> 
 {% endfor %}
-
-<h1>some list</h1>
-
-{{ election.somelist }}
 
 {% endblock %}
