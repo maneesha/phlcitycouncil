@@ -18,7 +18,7 @@
             <ul class="list-group">
                 {% for el in election.special2022 %}
                 <li class="list-group-item">
-                    <a href=" {{ el.get_absolute_url }}">{{ el }}</a>; 
+                    <a href=" {{ el.get_absolute_url }}">{{ el.election_shorthand }}</a>; 
                     {{ el.candidate_set.all.count }} candidate{{ el.candidate_set.all.count|pluralize }}
                     {% if el.candidate_set.all.count == 1 %} (Unopposed) {% endif %}
                 </li>
@@ -42,7 +42,7 @@
             <ul class="list-group">
                 {% for el in election.general2019 %}
                 <li class="list-group-item">
-                    <a href=" {{ el.get_absolute_url }}">{{ el }}</a>; 
+                    <a href=" {{ el.get_absolute_url }}">{{ el.election_shorthand }}</a>; 
                     {{ el.candidate_set.all.count }} candidate{{ el.candidate_set.all.count|pluralize }}
                     {% if el.candidate_set.all.count == 1 %} (Unopposed) {% endif %}
                 </li>
@@ -65,7 +65,7 @@
             <ul class="list-group">
                 {% for el in election.primary2019 %}
                 <li class="list-group-item">
-                    <a href=" {{ el.get_absolute_url }}">{{ el }}</a>; 
+                    <a href=" {{ el.get_absolute_url }}">{{ el.election_shorthand }}</a>; 
                     {{ el.candidate_set.all.count }} candidate{{ el.candidate_set.all.count|pluralize }}
                     {% if el.candidate_set.all.count == 1 %} (Unopposed) {% endif %}
                 </li>
@@ -88,7 +88,7 @@
             <ul class="list-group">
                 {% for el in election.general2015 %}
                 <li class="list-group-item">
-                    <a href=" {{ el.get_absolute_url }}">{{ el }}</a>; 
+                    <a href=" {{ el.get_absolute_url }}">{{ el.election_shorthand }}</a>; 
                     {{ el.candidate_set.all.count }} candidate{{ el.candidate_set.all.count|pluralize }}
                     {% if el.candidate_set.all.count == 1 %} (Unopposed) {% endif %}
                 </li>
