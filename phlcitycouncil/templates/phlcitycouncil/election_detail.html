@@ -6,6 +6,7 @@
 
 
 
+
 {% block content %}
 
 <h1>{{ election.election_date|date:"Y"}} {{ election.get_election_type_display }} Election for {{ election.election_seat }}</h1>
@@ -46,7 +47,75 @@
 'data_list' is:  {{ data_list }}
 
 <hr>
+Some values
+{% for i in data_list %}
+<p>{{ i }}</p>
+{% endfor %}
+
+<hr>
 
 'election' is {{ election }}
 
+<hr>
+
+{{ candidates }}
+{{ vote_count }}
+
+{{ results }}
+
+
+<div id="container" style="width: 75%;">
+    <canvas id="pie-chart"></canvas>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+
+
+
+<script type="text/javascript"> 
+
+    var can = {{ candidates|safe }};
+    console.log(can);
+    console.log(typeof can);
+
+    var fj = {{ results|safe }};
+
+    console.log('fj is')
+    console.log(typeof fj)
+    console.log(fj)
+    console.log({{ candidates|safe }})
+    console.log({{ vote_count|safe  }})
+
+
+    var config = {
+        type: 'pie',
+        data: {
+            datasets: [{
+                data: {{ vote_count|safe }},
+                // backgroundColor: ['#696969', '#808080', '#A9A9A9'],
+                backgroundColor: ['red ', 'blue', 'yellow'],
+                label: "Election"
+                }],
+            labels: {{ candidates|safe }},
+        },
+
+        options: {responsive: true}
+
+    }; // close var config 
+
+    window.onload = function(){
+        var ctx = document.getElementById('pie-chart').getContext('2d');
+        window.myPie = new Chart(ctx, config)
+    };
+
+ </script>
+
+
 {% endblock %}
+
+
+
+
+<canvas id="myChart" width="400" height="100"></canvas>  
+
+
