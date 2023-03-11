@@ -43,6 +43,9 @@ class Person(models.Model):
         """Returns the URL to access a detail record for this book."""
         return reverse('person-detail', args=[str(self.id)])
 
+    def full_name(self):
+         return self.first_name +  " " + self.last_name
+
 
 class Seat(models.Model):
     """Model representing every possible seat in city council"""
@@ -117,6 +120,11 @@ class Election(models.Model):
     def get_absolute_url(self):
         """Returns the URL to access a detail record for this book."""
         return reverse('election-detail', args=[str(self.id)])
+
+    def election_shorthand(self):
+        election_seat_verbose = self.election_seat.get_seat_name_display()
+        election_party_verbose = self.get_election_party_display()
+        return election_seat_verbose + " " + election_party_verbose
 
 
 class Candidate(models.Model):
