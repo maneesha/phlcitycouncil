@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.views import generic 
 from django.db.models.functions import ExtractYear
+from django.http import JsonResponse
+from django.core import serializers
 
 from rest_framework import generics
 from rest_framework.decorators import api_view 
@@ -8,6 +10,7 @@ from rest_framework.response import Response
 from rest_framework.reverse import reverse
 from .serializers import ElectionSerializer, PersonSerializer, CandidateSerializer
 
+import json
 
 from .models import Person, Seat, Election, Term, Candidate
 
@@ -63,35 +66,50 @@ class ElectionDetailView(generic.DetailView):
     """
 
 
-    context_object_name = 'election'
-    queryset = Election.objects.all()
-    # model = Election 
+    # context_object_name = 'election'
+    # queryset = Election.objects.all()
+    model = Election 
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context['data_list'] = Election.objects.all()
+    def get_context_data(self, **kwargs):
+        model = Election
+        # el = Election.objects.get(pk=self.kwargs.get('pk'))
+        context = super().get_context_data(**kwargs)
+        # context['data_list'] = Election.objects.all()
 
-    #     return context 
+        # Hold queryset in a variable to be used later for candidate/vote count lists
+        q1 = Election.objects.filter(pk=self.kwargs.get('pk')).values('id', 'election_date', 'candidate__candidate_results', 'candidate__candidate_person__last_name', 'candidate__candidate_votes_received')
+        context['data_list'] = Election.objects.filter(pk=self.kwargs.get('pk')).values('id', 'election_date', 'candidate__candidate_results', 'candidate__candidate_person__last_name', 'candidate__candidate_votes_received')
+        # context['data_list'] = Election.objects.select_related()
+        context['items'] = Election.objects.values_list('election_date')
 
-    #     queryset = Election.candidate_set.all
+        # Create list of candidate names 
+        candidates_names = []
+        for i in q1: 
+            print(i['candidate__candidate_person__last_name'])
+            candidates_names.append(i['candidate__candidate_person__last_name'])
 
-    #     vote_count = []
-    #     for q in queryset:
-    #         vote_count.append(q.candidate_votes_received)
+        # Create list of vote counts
+        vote_count = []
+        for i in q1:
+            print(i['candidate__candidate_votes_received'])
+            vote_count.append(i['candidate__candidate_votes_received'])
+
+        # Add candidate names and vote count lists to context data 
+        context['candidates'] = candidates_names
+        context['vote_count'] = vote_count 
+
+        results = {}
+
+        for i in q1:
+            cn = i['candidate__candidate_person__last_name']
+            vr = i['candidate__candidate_votes_received']
+            results[cn] = vr
 
 
-    #     context = super().get_context_data(**kwargs)
-    #     context['cand'] = Election.objects.filter(pk=self.kwargs.get('pk'))
-    #     context['qu'] = Election.objects.all()
-    #     context['vote_count'] = vote_count
-    #     # context['baseball'] = 'phillies'
-    #     # context['cand'] = Candidate.objects.all()
-    #     # context['pers'] = Person.objects.all()
-    #     return context 
+        print(results)
+        context['results'] = results
 
-
-
-
+        return context 
 
 class TermView(generic.ListView):
     model = Term 
