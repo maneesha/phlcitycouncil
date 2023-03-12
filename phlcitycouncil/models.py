@@ -98,6 +98,7 @@ class Election(models.Model):
         ('l', 'Libertarian'),
         ('wf', 'Working Families Party'),
         ('p', 'Progressive'),
+        ('tlp', 'Term Limits Philadelphia Party')
     )
 
     election_party = models.CharField(max_length = 3, choices=PARTIES, blank=False, null=False, default = "na")
