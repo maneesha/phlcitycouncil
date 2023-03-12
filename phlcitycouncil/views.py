@@ -41,21 +41,43 @@ class ElectionView(generic.ListView):
     template_name = "phlcitycouncil/election_list.html"
     context_object_name = 'election'
 
+    distinct_elections_query = Election.objects.order_by().values_list('election_date__year', 'election_type').distinct()
+
+    election_list = [] 
+    # Create list of values for Election list view/template
+    for i in distinct_elections_query:
+        year = i[0]
+        elec_type = i[1]
+        elec_type_dict = {'g':'general', 's':'special', 'p': 'primary'}
+        election_tag = elec_type_dict[elec_type] + str(year)
+        election_text = elec_type_dict[elec_type] + " Election " + str(year)
+        election_list.append([election_tag, election_list])
+
+
     def get_queryset(self):
+
+        distinct_elections_query = Election.objects.order_by().values_list('election_date__year', 'election_type').distinct()
+
+        election_list = [] 
+       
+        # Create list of values for Election list view/template
+        for i in distinct_elections_query:
+
+            year = i[0]
+            elec_type = i[1]
+            elec_type_dict = {'g':'general', 's':'special', 'p': 'primary'}
+            election_tag = elec_type_dict[elec_type] + str(year)
+            election_text =  elec_type_dict[elec_type].capitalize()  + " Election " + str(year)
+            election_query = Election.objects.filter(election_date__year = year).filter(election_type = elec_type)
+            # year is used to sort the list of dicts; election_tag is used for html ids; election_text is html text headings; query is to run the query
+            x = {"election_year":year, "election_tag" : election_tag, "election_text":election_text, "election_query":election_query}
+            election_list.append(x)
+
+        election_list = sorted(election_list, key=lambda d: d['election_year'], reverse=True )
 
         queryset = {
             'election':Election.objects.all(),
-
-            'special2022' : Election.objects.filter(election_date__year = 2022).filter(election_type = 's'),
-
-            'general2019' : Election.objects.filter(election_date__year = 2019).filter(election_type = 'g'),
-            'primary2019' : Election.objects.filter(election_date__year = 2019).filter(election_type = 'p'),
-
-            'general2015' : Election.objects.filter(election_date__year = 2015).filter(election_type = 'g'),
-            'primary2015' : Election.objects.filter(election_date__year = 2015).filter(election_type = 'p'),
-
-            'general2011' : Election.objects.filter(election_date__year = 2011).filter(election_type = 'g'),
-            'primary2011' : Election.objects.filter(election_date__year = 2011).filter(election_type = 'p'),
+            'election_list': election_list,
         }
         return queryset
 
