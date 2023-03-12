@@ -6,105 +6,31 @@
 <h1>Philadelphia City Council Elections</h1>
 
 <div id="accordion">
+  {% for e in election.election_list %}
 
-    <div class="card">
-      <div class="card-header">
-        <a class="btn" data-bs-toggle="collapse" href="#specialz">
-          2022 Special Election
-        </a>
-      </div>
-      <div id="specialz" class="collapse show" data-bs-parent="#accordion">
-        <div class="card-body">
-            <ul class="list-group">
-                {% for el in election.special2022 %}
-                <li class="list-group-item">
-                    <a href=" {{ el.get_absolute_url }}">{{ el.election_shorthand }}</a>; 
-                    {{ el.candidate_set.all.count }} candidate{{ el.candidate_set.all.count|pluralize }}
-                    {% if el.candidate_set.all.count == 1 %} (Unopposed) {% endif %}
-                </li>
-                {% endfor %}
-            </ul>        
-        </div>
+  <div class="card">
+    <div class="card-header">
+      <a class="btn" data-bs-toggle="collapse" href="#{{e.election_tag}}">
+        {{ e.election_text }}
+      </a>
+    </div>
+    <div id="{{e.election_tag}}" class="collapse show" data-bs-parent="#accordion">
+      <div class="card-body">
+          <ul class="list-group">
+
+              {% for el in e.election_query %}
+              <li class="list-group-item">
+                  <a href=" {{ el.get_absolute_url }}">{{ el.election_shorthand }}</a>; 
+                  {{ el.candidate_set.all.count }} candidate{{ el.candidate_set.all.count|pluralize }}
+                  {% if el.candidate_set.all.count == 1 %} (Unopposed) {% endif %}
+              </li>
+              {% endfor %}
+          </ul>        
       </div>
     </div>
+  </div>
+  {% endfor %}
 
-
-
-
-    <div class="card">
-      <div class="card-header">
-        <a class="collapsed btn" data-bs-toggle="collapse" href="#general2019">
-         2019 General Election        
-        </a>
-      </div>
-      <div id="general2019" class="collapse" data-bs-parent="#accordion">
-        <div class="card-body">
-            <ul class="list-group">
-                {% for el in election.general2019 %}
-                <li class="list-group-item">
-                    <a href=" {{ el.get_absolute_url }}">{{ el.election_shorthand }}</a>; 
-                    {{ el.candidate_set.all.count }} candidate{{ el.candidate_set.all.count|pluralize }}
-                    {% if el.candidate_set.all.count == 1 %} (Unopposed) {% endif %}
-                </li>
-                {% endfor %}
-            </ul>        
-        </div>
-      </div>
-    </div>
-  
-
-
-    <div class="card">
-      <div class="card-header">
-        <a class="collapsed btn" data-bs-toggle="collapse" href="#primary2019">
-            2019 Primary Election        
-        </a>
-      </div>
-      <div id="primary2019" class="collapse" data-bs-parent="#accordion">
-        <div class="card-body">
-            <ul class="list-group">
-                {% for el in election.primary2019 %}
-                <li class="list-group-item">
-                    <a href=" {{ el.get_absolute_url }}">{{ el.election_shorthand }}</a>; 
-                    {{ el.candidate_set.all.count }} candidate{{ el.candidate_set.all.count|pluralize }}
-                    {% if el.candidate_set.all.count == 1 %} (Unopposed) {% endif %}
-                </li>
-                {% endfor %}
-            </ul>        
-        </div>
-      </div>
-    </div>
-  
-
-
-    <div class="card">
-      <div class="card-header">
-        <a class="collapsed btn" data-bs-toggle="collapse" href="#general2015">
-            2015 General Election        
-        </a>
-      </div>
-      <div id="general2015" class="collapse" data-bs-parent="#accordion">
-        <div class="card-body">
-            <ul class="list-group">
-                {% for el in election.general2015 %}
-                <li class="list-group-item">
-                    <a href=" {{ el.get_absolute_url }}">{{ el.election_shorthand }}</a>; 
-                    {{ el.candidate_set.all.count }} candidate{{ el.candidate_set.all.count|pluralize }}
-                    {% if el.candidate_set.all.count == 1 %} (Unopposed) {% endif %}
-                </li>
-                {% endfor %}
-            </ul>        
-        </div>
-      </div>
-    </div>
-  
-  
-
-</div>
-
-
-
-
-
+  </div>
 
 {% endblock %}
