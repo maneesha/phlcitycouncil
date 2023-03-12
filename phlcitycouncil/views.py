@@ -22,10 +22,12 @@ def index(request):
 
     num_persons = Person.objects.all().count()
     num_seats = Seat.objects.all().count()
+    num_elections = Election.objects.all().count()
 
     context = {
         'num_persons':num_persons,
         'num_seats':num_seats,
+        'num_elections':num_elections
     }
 
     return render(request, 'index.html', context=context)
